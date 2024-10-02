@@ -63,7 +63,7 @@ class UserControllerTest {
         // given
         Random rand = new Random();
 
-        int count = 5;
+        int count = 100;
         long total = 0;
         for(int i = 0; i < count; i++) {
             int random = rand.nextInt(1, 1_000_001);
@@ -81,9 +81,6 @@ class UserControllerTest {
 
         double average = (double)total / count;
         System.out.println("평균 소요 시간: " + average +"ms");
-        // when
-
-        // then
     }
 
 }
