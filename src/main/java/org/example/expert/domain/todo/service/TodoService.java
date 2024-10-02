@@ -5,10 +5,12 @@ import org.example.expert.client.WeatherClient;
 import org.example.expert.domain.common.dto.AuthUser;
 import org.example.expert.domain.common.exception.InvalidRequestException;
 import org.example.expert.domain.todo.dto.request.QueryDateRangeSearch;
+import org.example.expert.domain.todo.dto.request.QuerySearch;
 import org.example.expert.domain.todo.dto.request.QueryWeatherSearch;
 import org.example.expert.domain.todo.dto.request.TodoSaveRequest;
 import org.example.expert.domain.todo.dto.response.TodoResponse;
 import org.example.expert.domain.todo.dto.response.TodoSaveResponse;
+import org.example.expert.domain.todo.dto.response.TodoSearchResponse;
 import org.example.expert.domain.todo.entity.Todo;
 import org.example.expert.domain.todo.repository.TodoRepository;
 import org.example.expert.domain.user.dto.response.UserResponse;
@@ -54,17 +56,13 @@ public class TodoService {
 
         Page<TodoResponse> todos = todoRepository.findAllTodoByQueryDsl(pageable, weather, date);
 
-        return todos.map(todo -> new TodoResponse(
-                todo.getId(),
-                todo.getTitle(),
-                todo.getContents(),
-                todo.getWeather(),
-                new UserResponse(todo.getUser().getId(), todo.getUser().getEmail()),
-                todo.getCreatedAt(),
-                todo.getModifiedAt()
-        ));
+        return todos;
     }
 
+    public Page<TodoSearchResponse> searchTodos(int page, int size, QuerySearch search) {
+        return todoRepository.search(PageRequest.of(page - 1, size),
+            search);
+    }
     public TodoResponse getTodo(long todoId) {
         Todo todo = todoRepository.findByIdWithUser(todoId)
                 .orElseThrow(() -> new InvalidRequestException("Todo not found"));
