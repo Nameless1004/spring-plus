@@ -48,9 +48,10 @@ public class TodoCustomRepositoryImpl implements TodoCustomRepository {
             .distinct()
             .from(todo)
             .leftJoin(todo.user, user)
-            .fetchJoin()
             .where(whereBB)
             .orderBy(todo.modifiedAt.desc())
+            .offset(pageable.getOffset())
+            .limit(pageable.getPageSize())
             .fetch();
 
 
