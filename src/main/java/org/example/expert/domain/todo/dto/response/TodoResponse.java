@@ -1,11 +1,13 @@
 package org.example.expert.domain.todo.dto.response;
 
 import lombok.Getter;
+import lombok.ToString;
 import org.example.expert.domain.user.dto.response.UserResponse;
 
 import java.time.LocalDateTime;
 
 @Getter
+@ToString
 public class TodoResponse {
 
     private final Long id;

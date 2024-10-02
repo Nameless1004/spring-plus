@@ -5,6 +5,7 @@ import java.time.LocalDate;
 import lombok.RequiredArgsConstructor;
 import org.example.expert.domain.common.annotation.Auth;
 import org.example.expert.domain.common.dto.AuthUser;
+import org.example.expert.domain.security.UserDetailsImpl;
 import org.example.expert.domain.todo.dto.request.QueryDateRangeSearch;
 import org.example.expert.domain.todo.dto.request.QueryWeatherSearch;
 import org.example.expert.domain.todo.dto.request.TodoSaveRequest;
@@ -13,6 +14,7 @@ import org.example.expert.domain.todo.dto.response.TodoSaveResponse;
 import org.example.expert.domain.todo.service.TodoService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -23,10 +25,10 @@ public class TodoController {
 
     @PostMapping("/todos")
     public ResponseEntity<TodoSaveResponse> saveTodo(
-            @Auth AuthUser authUser,
+            @AuthenticationPrincipal UserDetailsImpl authUser,
             @Valid @RequestBody TodoSaveRequest todoSaveRequest
     ) {
-        return ResponseEntity.ok(todoService.saveTodo(authUser, todoSaveRequest));
+        return ResponseEntity.ok(todoService.saveTodo(authUser.getUser(), todoSaveRequest));
     }
 
     @GetMapping("/todos")
