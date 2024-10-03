@@ -6,6 +6,9 @@
 ![ec2setting.png](./imgs/ec2setting.png)
 ![ec2securitygroup.png](./imgs/ec2securitygroup.png)
 ![awslinuxdockerrun.png](./imgs/awslinuxdockerrun.png)
+## 배포 방법
+* dokcer hub에 빌드 후 이미지 push
+* aws ec2 커널에서 docker pull 후 run
 # 헬스체크
 ![](./imgs/healthcheck.png)
 # 쿼리 개선
