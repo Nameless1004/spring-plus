@@ -34,7 +34,7 @@ public class JwtAuthorizationFilter extends OncePerRequestFilter {
         FilterChain chain) throws ServletException, IOException {
         String url = request.getRequestURI();
 
-        if (url.startsWith("/auth")) {
+        if (url.startsWith("/auth") || url.startsWith("/healthcheck")) {
             chain.doFilter(request, response);
             return;
         }

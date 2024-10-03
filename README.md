@@ -1,4 +1,14 @@
 # SPRING PLUS
+# RDS 세팅
+![rdssetting.png](./imgs/rdssetting.png)
+![rdssecuritygroup.png](./imgs/rdssecuritygroup.png)
+# EC2 세팅
+![ec2setting.png](./imgs/ec2setting.png)
+![ec2securitygroup.png](./imgs/ec2securitygroup.png)
+![awslinuxdockerrun.png](./imgs/awslinuxdockerrun.png)
+# 헬스체크
+![](./imgs/healthcheck.png)
+# 쿼리 개선
 ## 100만건 유저 닉네임 조회 성능 개선
 ### 시간 계산 방법
 * 100회 1 ~ 1,000,000 아이디 랜덤 선택

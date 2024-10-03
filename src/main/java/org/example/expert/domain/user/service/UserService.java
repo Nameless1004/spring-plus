@@ -2,6 +2,7 @@ package org.example.expert.domain.user.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.UUID;
 import lombok.RequiredArgsConstructor;
 import org.example.expert.domain.common.exception.InvalidRequestException;
 import org.example.expert.domain.user.dto.request.UserChangePasswordRequest;
@@ -71,7 +72,7 @@ public class UserService {
 
         String uploadDir = System.getProperty("java.io.tmpdir");  // 임시 디렉토리
         String savePath = uploadDir + File.separator + "user_" + user.getId() + "_" + "profile_" + file.getOriginalFilename();
-        String key =  "user_" + user.getId() + "_" + "profile_" + file.getOriginalFilename();
+        String key =  "user/" + user.getId() + "/" + "profile/" + UUID.randomUUID().toString().substring(0, 7) + file.getOriginalFilename();
 
         File f = new File(savePath);
 
